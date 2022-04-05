@@ -1,10 +1,22 @@
-import React, { Component } from "react";
+import React from 'react';
 
-class Pagination extends Component {
-  state = {};
-  render() {
-    return <div></div>;
-  }
+const Pagination = ({postsPerPage, totalPosts, paginate, currentPage}) => {
+    const pageNumbers = [];
+
+    for(let i = 1; i <= Math.ceil(totalPosts/postsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+
+  return (
+    <nav>
+      <ul className='pagination justify-content-center mt-2'>
+        {pageNumbers.map(number => (          
+          <li key={number} className={number === currentPage ? "page-item active " : "page-item"}>
+            <a onClick={() => paginate(number)} href="!#" className="page-link">{number}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
 }
-
 export default Pagination;

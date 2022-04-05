@@ -1,7 +1,14 @@
 #logo {
   height: 50px;
 }
+.small {
+  font-size: .75rem;
+  font-weight: 700;
+}
 
-.bg-dark {
-  background-color: red !important;
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff !important;
+  background-color: rgb(33,37,41) !important;
+  border: 1px solid black;
 }

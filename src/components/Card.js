@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import React from "react";
+import { Card as BSCard, Button } from "react-bootstrap";
 
-class LFCard extends Component {
-  state = {
-    title: "Title",
-    text: "My text",
-    img: "prod/sellery.jpg",
-  };
-  render() {
-    return (
-      <Card>
-        <Card.Img variant="top" src={this.state.img} />
-        <Card.Body>
-          <Card.Title>{this.state.title}</Card.Title>
-          <Card.Text>{this.state.text}</Card.Text>
-        </Card.Body>
-      </Card>
-    );
-  }
-}
+const Card = ({ title, cat, img, descr, amount, unit, price }) => {
+  return (
+    <BSCard>
+      <div className="p-2">
+        <BSCard.Img variant="top" src={img} />
+      </div>
+      <BSCard.Body>
+        <BSCard.Title>
+          {title} - pris: {price},-
+        </BSCard.Title>
+        <BSCard.Text>{descr}</BSCard.Text>
+        <BSCard.Text>{amount} {unit}</BSCard.Text>
+        <Button className="btn btn-success">Reserver nu</Button>
+      </BSCard.Body>
+        <BSCard.Header className="small">{cat}</BSCard.Header>
+    </BSCard>
+  );
+};
 
-export default LFCard;
+export default Card;
