@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import App from '../App';
+import Farmer from './../components/routes/Farmer';
 
 test('renders react component', () => {
 
@@ -9,8 +9,8 @@ test('renders react component', () => {
         useNavigate: () => mockedUsedNavigate,
     }));
   
-    render(<App />);
+    render(<Farmer />);
 
-    const divElement = screen.getByText(/Local Food/i);
+    const divElement = screen.getByText(/Farmers/i);
     expect(divElement).toBeInTheDocument();
 });
