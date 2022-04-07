@@ -12,6 +12,6 @@ test('renders react component', () => {
   
     render(<BrowserRouter><App /></BrowserRouter>);
 
-    const divElement = screen.getByText(/Farmers/i);
+    const divElement = screen.getByText(/Local Food/i);
     expect(divElement).toBeInTheDocument();
 });
