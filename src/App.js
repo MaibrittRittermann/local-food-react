@@ -4,6 +4,7 @@ import Menu from "./components/Menu";
 import Home from "./components/routes/Home";
 import Farmer from "./components/routes/Farmer";
 import { Container } from "react-bootstrap";
+import LoginForm from "./components/routes/LoginForm";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         </header>
         <Routes>
           <Route path="/farmers" element={<Farmer/>}/>
+          <Route path="/login" element={<LoginForm/>}/>
           <Route path="/" element={<Home />}/>
         </Routes>
       </Container>
