@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useState} from 'react';
 import { Button, Form } from 'react-bootstrap';
 //import Joi from 'react-joi';
@@ -39,7 +40,13 @@ const LoginForm = () => {
         });
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+
+        await axios.post('https://localfood-aspit.azurewebsites.net/api/seller', {...Account})
+        .then((res) => {
+            localStorage.setItem("x-auth-token", JSON.stringify(res.data));
+        }).catch((e) => console.log(e));
+
         console.log("submitted");
     }
 

@@ -15,13 +15,13 @@ class Menu extends Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <LinkContainer to="/">                
-                <Nav.Link>Home</Nav.Link>
+                <Nav.Link>Forsiden</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/farmers">
+              <LinkContainer to="/seller">
                 <Nav.Link>Forhandlere</Nav.Link>
               </LinkContainer>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown title="Flere menupunkter" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
                 </NavDropdown.Item>

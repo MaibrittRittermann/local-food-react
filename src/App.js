@@ -2,7 +2,7 @@ import "./App.scss";
 import {Routes, Route} from 'react-router-dom';
 import Menu from "./components/Menu";
 import Home from "./components/routes/Home";
-import Farmer from "./components/routes/Farmer";
+import Seller from "./components/routes/Seller";
 import { Container } from "react-bootstrap";
 import LoginForm from "./components/routes/LoginForm";
 
@@ -13,10 +13,10 @@ function App() {
       <Menu />
       <Container>
         <header className="App-header">
-          <h1>Hello and welcome to Local Food</h1>
+          <h1>Find din lokale leverandør på Local Food</h1>
         </header>
         <Routes>
-          <Route path="/farmers" element={<Farmer/>}/>
+          <Route path="/seller" element={<Seller/>}/>
           <Route path="/login" element={<LoginForm/>}/>
           <Route path="/" element={<Home />}/>
         </Routes>
