@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-const Seller = () => {
+const Sellers = () => {
     
     let [Sellers, setSellers] = useState([]);
 
@@ -28,4 +28,4 @@ const Seller = () => {
         );
 }
  
-export default Seller;
+export default Sellers;

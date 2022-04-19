@@ -5,7 +5,7 @@ const Card = ({ title, cat, img, descr, amount, unit, price }) => {
   return (
     <BSCard>
       <div className="p-2">
-        <BSCard.Img variant="top" src={img} />
+        <BSCard.Img variant="top" src={"prod/" + img} />
       </div>
       <BSCard.Body>
         <BSCard.Title>

@@ -1,8 +1,24 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 import CardBoard from '../CardBoard';
 
 const Home = () => {
-    const cards = [
+
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get("https://localfood-aspit.azurewebsites.net/api/products")
+        .then((res) => {
+          setCards(res.data);
+        }).catch((e) => {
+          console.log(e);
+        });
+    }
+    fetchData();
+  }, []);
+
+  /*  const cards = [
         {
           title: "Selleri",
           cat: "grøntsag",
@@ -49,7 +65,7 @@ const Home = () => {
           price: 15,
         },
       ];
-    
+    */
     return (<CardBoard cards={cards}/>);
 
 }

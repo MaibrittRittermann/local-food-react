@@ -17,7 +17,7 @@ class Menu extends Component {
               <LinkContainer to="/">                
                 <Nav.Link>Forsiden</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/seller">
+              <LinkContainer to="/sellers">
                 <Nav.Link>Forhandlere</Nav.Link>
               </LinkContainer>
               <NavDropdown title="Flere menupunkter" id="basic-nav-dropdown">

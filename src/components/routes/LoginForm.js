@@ -6,7 +6,7 @@ import { Button, Form } from 'react-bootstrap';
 const LoginForm = () => {
 
     let [Account, setAccount] = useState({
-        username: '',
+        email: '',
         password: ''
     });
 
@@ -40,12 +40,15 @@ const LoginForm = () => {
         });
     }
 
-    const handleSubmit = async () => {
-
-        await axios.post('https://localfood-aspit.azurewebsites.net/api/seller', {...Account})
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await axios.post('https://localfood-aspit.azurewebsites.net/api/login', {...Account})
         .then((res) => {
             localStorage.setItem("x-auth-token", JSON.stringify(res.data));
-        }).catch((e) => console.log(e));
+            window.location = "/";
+        }).catch((e) => {            
+            console.log(e.response.data);
+        });
 
         console.log("submitted");
     }
@@ -55,20 +58,19 @@ const LoginForm = () => {
                 <Form className="rounded p-4" onSubmit={handleSubmit}>
                     <Form.Group className='mb-3' controlId='formBasicEmail'>
                         <Form.Label>Brugernavn: </Form.Label>
-                        <Form.Control type="email" name='username' value={Account.username} placeholder='Indtast Emailadresse' onChange={handleChange}/>
-                        {errors.username && <div className='alert alert-danger'>{errors.username}</div>}
+                        <Form.Control type="email" name='email' value={Account.email} placeholder='Indtast Emailadresse' onChange={handleChange}/>
+                        {/* {errors.username && <div className='alert alert-danger'>{errors.username}</div>} */}
                     </Form.Group>
                     <Form.Group className='mb-3' controlId='formBasicPassword'>
                         <Form.Label>Adgangskode: </Form.Label>
                         <Form.Control type="password" name="password" value={Account.password} placeholder='Indtast Adgangskode'  onChange={handleChange}/>
-                        {errors.password && <div className='alert alert-danger'>{errors.password}</div>}
+                        {/* {errors.password && <div className='alert alert-danger'>{errors.password}</div>} */}
                     </Form.Group>
                     <Form.Group className='mb-3' controlId='formBasicCheckbox'>
                         <Form.Check type="checkbox" label="Husk mig"/>
                     </Form.Group>
                     <Button variant='primary' type="submit" >Login</Button>
                 </Form>
-
             </div>
         );
     }
