@@ -10,7 +10,7 @@ const LoginForm = () => {
         password: ''
     });
 
-    let errors = {};
+   // let errors = {};
 
   /*  schema = Joi.object({
         username: Joi.string().email().required().label("Brugernavn"),

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 
 const Sellers = () => {
     
@@ -21,6 +23,9 @@ const Sellers = () => {
         
     return (<div>
             <h1>Leverandører</h1>
+            <LinkContainer to="/createseller">
+                <Button type="primary" >Opret ny</Button>
+            </LinkContainer>
             {Sellers.map((f, i) => 
                 <p key={i}>{f.name}</p>
             )}

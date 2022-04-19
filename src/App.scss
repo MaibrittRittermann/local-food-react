@@ -12,3 +12,8 @@
   background-color: rgb(33,37,41) !important;
   border: 1px solid black;
 }
+
+.App-header {
+  background: rgba(100, 50, 50, .75) url('../public/localfood.jpg') ;
+  background-blend-mode: multiply;
+}
