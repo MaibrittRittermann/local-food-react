@@ -1,7 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import { saveSeller, getSeller } from '../../services/sellerService';
 
-const CreateSeller = () => {
+
+const Seller = () => {
+
+    const {id} = useParams();
 
     let [Seller, setSeller] = useState({
         name: '',
@@ -12,6 +18,16 @@ const CreateSeller = () => {
         city: '',
         products: []
     });
+
+    useEffect (() => {
+        async function fetchData() {
+            if (id !== "null") {
+                const s = await getSeller(id);
+                setSeller({...s.data});
+            }
+        }
+        fetchData();
+    }, [id]);
 
     const handleChange = e => {
         let value = e.target.value;
@@ -28,8 +44,18 @@ const CreateSeller = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
      
+        try {
+            const newSeller = await saveSeller(Seller);
+            toast.success(newSeller.name + " er oprettet")
 
-        console.log("Opret sælger");
+            if(newSeller.response.status === 400) {
+                console.log(newSeller.response);
+                toast.error(newSeller.response.data);
+            }
+        } catch(ex) {
+            console.log(ex);
+            toast.error(ex.message);
+        }
     }
 
     return ( 
@@ -61,13 +87,10 @@ const CreateSeller = () => {
                             <Form.Control type="text" name='city' value={Seller.city} placeholder='Indtast by' onChange={handleChange}/>
                         </Form.Group>
                     </Row>
-                    <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-                        <Form.Check type="checkbox" label="Husk mig"/>
-                    </Form.Group>
-                    <Button variant='primary' type="submit" >Login</Button>
+                    <Button variant='primary' type="submit" >Opret</Button>
                 </Form>
         </div>
      );
 }
  
-export default CreateSeller;
+export default Seller;

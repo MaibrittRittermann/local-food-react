@@ -5,7 +5,8 @@ import Home from "./components/routes/Home";
 import Sellers from "./components/routes/Sellers";
 import { Container } from "react-bootstrap";
 import LoginForm from "./components/routes/LoginForm";
-import CreateSeller from "./components/routes/CreateSeller";
+import Seller from "./components/routes/Seller";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -18,8 +19,9 @@ function App() {
           </Container>
         </header>
       <Container>
+        <ToastContainer />
         <Routes>
-          <Route path="/createseller" element={<CreateSeller/>}/>
+          <Route path="/seller/:id" element={<Seller/>}/>
           <Route path="/sellers" element={<Sellers/>}/>
           <Route path="/login" element={<LoginForm/>}/>
           <Route path="/" element={<Home />}/>
