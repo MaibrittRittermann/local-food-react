@@ -1,7 +1,8 @@
 import { login } from '../../services/authService';
 import React, {useState} from 'react';
 import { Button, Form } from 'react-bootstrap';
-//import Joi from 'react-joi';
+// import Joi from 'joi';
+// import {useValidator} from 'react-joi';
 
 const LoginForm = () => {
 
@@ -10,10 +11,10 @@ const LoginForm = () => {
         password: ''
     });
 
-   // let errors = {};
+    let errors = {};
 
   /*  schema = Joi.object({
-        username: Joi.string().email().required().label("Brugernavn"),
+        username: Joi.tring().email().required().label("Brugernavn"),
         password: Joi.string().required().label("Adgangskode")
     });
 
@@ -42,10 +43,8 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await login(Account.email, Account.password);
+        await login(Account);
         window.location = "/";
-
-        console.log("submitted");
     }
 
         return (
@@ -54,12 +53,12 @@ const LoginForm = () => {
                     <Form.Group className='mb-3' controlId='formBasicEmail'>
                         <Form.Label>Brugernavn: </Form.Label>
                         <Form.Control type="email" name='email' value={Account.email} placeholder='Indtast Emailadresse' onChange={handleChange}/>
-                        {/* {errors.username && <div className='alert alert-danger'>{errors.username}</div>} */}
+                        {errors.username && <div className='alert alert-danger'>{errors.username}</div>}
                     </Form.Group>
                     <Form.Group className='mb-3' controlId='formBasicPassword'>
                         <Form.Label>Adgangskode: </Form.Label>
                         <Form.Control type="password" name="password" value={Account.password} placeholder='Indtast Adgangskode'  onChange={handleChange}/>
-                        {/* {errors.password && <div className='alert alert-danger'>{errors.password}</div>} */}
+                        {errors.password && <div className='alert alert-danger'>{errors.password}</div>}
                     </Form.Group>
                     <Form.Group className='mb-3' controlId='formBasicCheckbox'>
                         <Form.Check type="checkbox" label="Husk mig"/>

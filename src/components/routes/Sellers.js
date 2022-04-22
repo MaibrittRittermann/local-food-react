@@ -1,4 +1,4 @@
-import axios from 'axios';
+import {getSellers} from '../../services/sellerService';
 import React, { useState, useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
@@ -9,8 +9,7 @@ const Sellers = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-
-            await axios.get('https://localfood-aspit.azurewebsites.net/api/seller')
+            await getSellers()
                 .then((res) => {
                     setSellers(res.data);
                 }).catch((e)=>console.log(e));

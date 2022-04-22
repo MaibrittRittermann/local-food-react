@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { saveSeller, getSeller } from '../../services/sellerService';
+import { saveSeller, getSeller, deleteSeller } from '../../services/sellerService';
 
 
 const Seller = () => {
@@ -46,16 +46,21 @@ const Seller = () => {
      
         try {
             const newSeller = await saveSeller(Seller);
-            toast.success(newSeller.name + " er oprettet")
+            toast.success(`${newSeller.data.name} er oprettet`)
 
             if(newSeller.response.status === 400) {
                 console.log(newSeller.response);
                 toast.error(newSeller.response.data);
             }
         } catch(ex) {
-            console.log(ex);
+            console.log(`Fejl opstået: ${ex.response.data}`);
             toast.error(ex.message);
         }
+    }
+
+    const handleDelete = async (id) => {
+        console.log("Slet " + id);
+        await deleteSeller(id);
     }
 
     return ( 
@@ -87,7 +92,8 @@ const Seller = () => {
                             <Form.Control type="text" name='city' value={Seller.city} placeholder='Indtast by' onChange={handleChange}/>
                         </Form.Group>
                     </Row>
-                    <Button variant='primary' type="submit" >Opret</Button>
+                    <Button variant='primary' type="submit">Gem</Button>
+                    {Seller._id && <Button variant="danger" className='ms-2' onClick={() => handleDelete(Seller._id)}>Slet</Button>}
                 </Form>
         </div>
      );
