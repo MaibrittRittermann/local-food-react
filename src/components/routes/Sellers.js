@@ -43,7 +43,7 @@ const Sellers = () => {
                         <td>{seller.zip}</td>
                         <td>{seller.city}</td>
                         <td>{seller.products.map((p, j) =>
-                            <span key={j}>{p.name},</span>
+                            <span key={j}>{j>1?', ' + p.title: p.title}</span>
                         )}
                         </td>
                         <td> <LinkContainer to={"/seller/" + seller._id }><Button type="success">Rediger</Button></LinkContainer></td>

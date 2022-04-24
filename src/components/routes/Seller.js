@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { saveSeller, getSeller, deleteSeller } from '../../services/sellerService';
+import Products from './Products';
 
 
 const Seller = () => {
@@ -63,6 +64,10 @@ const Seller = () => {
         await deleteSeller(id);
     }
 
+    const handleProduct = (prodId) => {
+        console.log("save Product");
+    }
+
     return ( 
         <div>
             <Form className="rounded p-4" onSubmit={handleSubmit}>
@@ -92,9 +97,14 @@ const Seller = () => {
                             <Form.Control type="text" name='city' value={Seller.city} placeholder='Indtast by' onChange={handleChange}/>
                         </Form.Group>
                     </Row>
-                    <Button variant='primary' type="submit">Gem</Button>
+                    <Button variant='success' type="submit">Gem</Button>
                     {Seller._id && <Button variant="danger" className='ms-2' onClick={() => handleDelete(Seller._id)}>Slet</Button>}
+    {/*
+                    
+                    
+                */}
                 </Form>
+                <Products id={Seller._id}/>
         </div>
      );
 }
