@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { saveSeller, getSeller, deleteSeller } from '../../services/sellerService';
-import Products from './Products';
+import SellerProducts from './SellerProducts';
 
 
 const Seller = () => {
@@ -13,9 +13,9 @@ const Seller = () => {
     let [Seller, setSeller] = useState({
         name: '',
         email: '',
-        phone: '',
+        phone: 10000000,
         address: '',
-        zip: '',
+        zip: 1000,
         city: '',
         products: []
     });
@@ -64,10 +64,6 @@ const Seller = () => {
         await deleteSeller(id);
     }
 
-    const handleProduct = (prodId) => {
-        console.log("save Product");
-    }
-
     return ( 
         <div>
             <Form className="rounded p-4" onSubmit={handleSubmit}>
@@ -104,7 +100,7 @@ const Seller = () => {
                     
                 */}
                 </Form>
-                <Products id={Seller._id}/>
+                {Seller._id&&<SellerProducts id={Seller._id}/>}
         </div>
      );
 }

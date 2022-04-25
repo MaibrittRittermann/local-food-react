@@ -10,21 +10,8 @@ export function getSeller(id) {
     return http.get(apiEndpoint + id);
 }
 
-export function getProducts(id) {
-    return http.get(apiEndpoint + '/products/' + id);
-}
-
-// TODO: getProduct() & saveProduct()
-export function getProduct(sellerId, productId) {
-    
-}
-
-export function saveProduct(sellerId, product) {
-    // TODO: implement
-    console.log("saveProduct " + product.title);
-}
-
 export function saveSeller(seller) {
+    console.log(seller);
     if(seller._id) {
         const body = { ...seller };
         delete body._id;

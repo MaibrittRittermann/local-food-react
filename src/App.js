@@ -6,7 +6,7 @@ import Sellers from "./components/routes/Sellers";
 import { Container } from "react-bootstrap";
 import LoginForm from "./components/routes/LoginForm";
 import Seller from "./components/routes/Seller";
-import Product from "./components/routes/Product";
+import SellerProduct from "./components/routes/SellerProducts";
 import { ToastContainer } from 'react-toastify';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
       <Container>
         <ToastContainer />
         <Routes>
-          <Route path="/product/:id/:product" element={<Product/>}/>
+          <Route path="/product/:prodId" element={<SellerProduct/>}/>
           <Route path="/seller/:id" element={<Seller/>}/>
           <Route path="/sellers" element={<Sellers/>}/>
           <Route path="/login" element={<LoginForm/>}/>

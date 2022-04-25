@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { saveProduct } from '../../services/sellerService';
+import { saveProduct } from '../../services/productService';
 import { Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
+import { getProducts } from './../../services/productService';
 
 const Product = () => {
 
-    const {id, product} = useParams();
+    const {productId} = useParams();
+
+    const [Product, setProduct] = useState({
+        title: '',
+        cat: '',
+        img: '',
+        descr: '',
+        amount: 0,
+        unit: '',
+        price: 0,
+        seller: {
+            _id: '',
+            address: '',
+            zip: 1000,
+            city: ''
+        }
+    });
+
+    useEffect (() => {
+        async function fetchData() {
+            if (productId !== "null") {
+                const p = await getProducts(productIid);
+                setProduct({...p.data});
+            }
+        }
+        fetchData();
+    }, [productId]);
 
     const handleChange = () => {
         console.log("Change");
@@ -13,6 +40,10 @@ const Product = () => {
 
     const handleSubmit = () => {
         saveProduct(id, Product);
+    }
+
+    const handleSelect = (e) => {
+        console.log(e);
     }
 
     const handleDelete = () => {
@@ -27,10 +58,10 @@ const Product = () => {
                     <Form.Label>Titel: </Form.Label>
                     <Form.Control type="text" name='title' value={Product.title} placeholder='Indtast produktnavn' onChange={handleChange}/>
                 </Form.Group>
-        {/*
+        
                 <Form.Group className='mb-3' controlId='formBasicEmail'>
                     <Form.Label>Kategori: </Form.Label>
-                    <Dropdown.Menu>
+                    <Dropdown.Menu onSelect={handleSelect}>
                         <Dropdown.Item >Grøntsag</Dropdown.Item>
                         <Dropdown.Item >Frugt</Dropdown.Item>
                         <Dropdown.Item >Andet</Dropdown.Item>
@@ -62,7 +93,7 @@ const Product = () => {
                 {Product._id && <Button variant="danger" className='ms-2' onClick={() => handleDelete(Product._id)}>Slet</Button>}
                 
                 
-            */}
+            
             </Form>
     </div>
      );
