@@ -20,6 +20,8 @@ const Seller = () => {
         products: []
     });
 
+    const [errors, setErrors] = useState('');
+
     useEffect (() => {
         async function fetchData() {
             if (id !== "null") {
@@ -54,7 +56,7 @@ const Seller = () => {
                 toast.error(newSeller.response.data);
             }
         } catch(ex) {
-            console.log(`Fejl opstået: ${ex.response.data}`);
+            setErrors(ex.response.data);
             toast.error(ex.message);
         }
     }
@@ -93,12 +95,10 @@ const Seller = () => {
                             <Form.Control type="text" name='city' value={Seller.city} placeholder='Indtast by' onChange={handleChange}/>
                         </Form.Group>
                     </Row>
+                    {errors && <div className='alert alert-danger'>{errors}</div>}
                     <Button variant='success' type="submit">Gem</Button>
                     {Seller._id && <Button variant="danger" className='ms-2' onClick={() => handleDelete(Seller._id)}>Slet</Button>}
-    {/*
-                    
-                    
-                */}
+
                 </Form>
                 {Seller._id&&<SellerProducts id={Seller._id}/>}
         </div>

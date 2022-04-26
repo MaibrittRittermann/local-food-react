@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
 
-class Menu extends Component {
-  state = {};
-  render() {
+const Menu = ({user}) => {
+  
     return (
       <Navbar expand="lg" bg="dark" variant="dark">
         <Container>
@@ -17,21 +16,17 @@ class Menu extends Component {
               <LinkContainer to="/">                
                 <Nav.Link>Forsiden</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/sellers">
-                <Nav.Link>Forhandlere</Nav.Link>
-              </LinkContainer>
+              {user && user.access === "admin" && <LinkContainer to="/sellers">
+                  <Nav.Link>Forhandlere</Nav.Link>
+                </LinkContainer>
+              }
               <NavDropdown title="Flere menupunkter" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
+                {!user && <NavDropdown.Item href="/login">Login</NavDropdown.Item>}
+                {!user && <NavDropdown.Item href="/register">Opret brugerkonto</NavDropdown.Item>}
+                {user && <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>}
+                {user && user.access === "admin" && <NavDropdown.Item href="/users">Brugere</NavDropdown.Item>}
+                
+                
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
@@ -39,6 +34,6 @@ class Menu extends Component {
       </Navbar>
     );
   }
-}
+
 
 export default Menu;

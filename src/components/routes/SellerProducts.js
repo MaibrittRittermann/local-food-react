@@ -23,7 +23,7 @@ const SellerProducts = () => {
     return (  
         <div>
         <h1>Produkter</h1>
-        <LinkContainer to="/products/null">
+        <LinkContainer to="/product/">
             <Button type="primary" >Opret nyt produkt</Button>
         </LinkContainer>
         <Table>

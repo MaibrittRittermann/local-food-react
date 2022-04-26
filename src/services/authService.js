@@ -11,6 +11,11 @@ export async function login(account) {
     localStorage.setItem(tokenKey, jwt);
 }
 
+export function loginWithJWT(jwt) {
+    console.log("jwt : " + jwt);
+    localStorage.setItem(tokenKey, jwt);
+}
+
 export function logout() {
     localStorage.removeItem(tokenKey);
 }
@@ -26,4 +31,8 @@ export function getCurrentUser() {
     } catch (err) {
         return null;
     }
+}
+
+export async function registerUser(user) {
+    return await http.post('user/register/', user);
 }

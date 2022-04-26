@@ -26,8 +26,8 @@ const Product = () => {
 
     useEffect (() => {
         async function fetchData() {
-            if (productId !== "null") {
-                const p = await getProducts(productIid);
+            if (productId !== null) {
+                const p = await getProducts(productId);
                 setProduct({...p.data});
             }
         }
@@ -39,7 +39,7 @@ const Product = () => {
     }
 
     const handleSubmit = () => {
-        saveProduct(id, Product);
+        saveProduct(Product);
     }
 
     const handleSelect = (e) => {
@@ -51,8 +51,7 @@ const Product = () => {
     }
     
     return ( 
-        <div> {id}
-        <p>{product}</p>
+        <div> 
         <Form className="rounded p-4" onSubmit={handleSubmit}>
                 <Form.Group className='mb-3' controlId='formBasicName'>
                     <Form.Label>Titel: </Form.Label>
