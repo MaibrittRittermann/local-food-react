@@ -11,7 +11,7 @@ export function getSeller(id) {
 }
 
 export function saveSeller(seller) {
-    console.log(seller);
+   
     if(seller._id) {
         const body = { ...seller };
         delete body._id;

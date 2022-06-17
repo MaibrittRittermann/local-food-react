@@ -13,9 +13,9 @@ const Seller = () => {
     let [Seller, setSeller] = useState({
         name: '',
         email: '',
-        phone: 10000000,
+        phone: 0,
         address: '',
-        zip: 1000,
+        zip: 0,
         city: '',
         products: []
     });
@@ -24,7 +24,7 @@ const Seller = () => {
 
     useEffect (() => {
         async function fetchData() {
-            if (id !== "null") {
+            if (id && id !== undefined) {
                 const s = await getSeller(id);
                 setSeller({...s.data});
             }
