@@ -11,6 +11,6 @@ test('renders react component', () => {
   
     render(<Seller />);
 
-    const divElement = screen.getByText(/Leverandører/i);
+    const divElement = screen.getByText(/Navn/i);
     expect(divElement).toBeInTheDocument();
 });
