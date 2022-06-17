@@ -1,5 +1,5 @@
 import http from './httpService';
-import Products from '../components/routes/SellerProducts';
+//import Products from '../components/routes/SellerProducts';
 
 const apiEndpoint = "product/";
 
