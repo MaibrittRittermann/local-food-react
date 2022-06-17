@@ -66,3 +66,9 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "front-localfood" #Must be unique in Heroku
         heroku_email: ${{secrets.EMAIL}}
+    - name: Smoke test 1
+      run: curl https://front-localfood.herokuapp.com/:80 
+    - name: ZAP Scan
+      uses: zaproxy/action-baseline@v0.7.0
+      with:
+        target: 'https://front-localfood.herokuapp.com/' 
