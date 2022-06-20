@@ -29,6 +29,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - name: Build the Docker images
+      run: docker-compose build
     - name: Run semgrep
       uses: returntocorp/semgrep-action@v1
       env:
