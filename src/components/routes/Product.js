@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { saveProduct } from '../../services/productService';
 import { Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
-import { getProducts } from './../../services/productService';
+import { getProduct } from './../../services/productService';
 
 const Product = () => {
 
@@ -27,7 +27,7 @@ const Product = () => {
     useEffect (() => {
         async function fetchData() {
             if (productId !== null) {
-                const p = await getProducts(productId);
+                const p = await getProduct(productId);
                 setProduct({...p.data});
             }
         }
